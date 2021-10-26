@@ -8,9 +8,15 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo-google-fonts/dancing-script": "^0.2.0",
+    "@expo-google-fonts/marck-script": "^0.2.0",
+    "@react-native-firebase/app": "^12.9.3",
+    "@react-native-firebase/auth": "^12.9.3",
+    "@react-native-firebase/firestore": "^12.9.3",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
     "expo": "~43.0.0",
+    "expo-font": "~10.0.3",
     "expo-status-bar": "~1.1.0",
     "firebase": "^8.2.3",
     "react": "17.0.1",

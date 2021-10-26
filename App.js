@@ -3,6 +3,8 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
+import FirstScreen from './screens/FirstScreen';
+import RegistrationScreen from './screens/RegistrationScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -13,7 +15,9 @@ export default function App() {
 
     <NavigationContainer>
       <Stack.Navigator>
+      <Stack.Screen name="First" options={{header: () => null}} component={FirstScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Registration" component={RegistrationScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>

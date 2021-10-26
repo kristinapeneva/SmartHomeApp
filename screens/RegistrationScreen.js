@@ -4,45 +4,40 @@ import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
 import { auth } from '../firebase'
 
-const LoginScreen = () => {
+const RegistrationScreen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] =  useState('')
 
     const navigation = useNavigation()
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             if (user) {
-                navigation.navigate("Home", { user })
+                navigation.navigate("Home")
             }
         })
 
         return unsubscribe
     }, [])
 
-
-    const handleLogin = () => {
-        auth
-        .signInWithEmailAndPassword(email, password)
+    const handleSignUp = () => {
+        if (password !== confirmPassword) {
+            alert("Passwords don't match.")
+            return
+        }
+        auth.createUserWithEmailAndPassword(email, password)
         .then(userCredentials => {
             const user = userCredentials.user;
-            console.log('Logged in with: ', user.email)
+            console.log('Registered with: ', user.email)
         })
-        .catch(error => {
-            if (error.code === 'auth/email-already-in-use') {
-              console.log('That email address is already in use!');
-            }
-        
-            if (error.code === 'auth/invalid-email') {
-              console.log('That email address is invalid!');
-            }
-        
-            console.error(error);
-    })}
+        .catch(error => alert(error.message))
+    }
 
-    const handleGoToReg = () => {
-            navigation.replace("Registration")
-      }
+    const handleGoToLogin = () => {
+        navigation.replace("Login")
+  }
+
 
     return (
         <KeyboardAvoidingView
@@ -63,27 +58,33 @@ const LoginScreen = () => {
                 style={styles.input}
                 secureTextEntry
                 />
+                <TextInput 
+                placeholder="Password Confirm"
+                value= { confirmPassword }
+                onChangeText={text => setConfirmPassword(text)}
+                style={styles.input}
+                secureTextEntry
+                />
             </View>
-            <View style={styles.buttonContainer}>
+            <View>
                 <TouchableOpacity
-                    onPress={handleLogin}
-                    style={styles.button}
-                >
-                    <Text style={styles.buttonText}>Login</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={handleGoToReg}
+                    onPress={handleSignUp}
                     style={[styles.button, styles.buttonOutline]}
                 >
                     <Text style={styles.buttonOutlineText}>Register</Text>
                 </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={handleGoToLogin}
+                    style={[styles.button, styles.buttonOutline]}
+                >
+                    <Text style={styles.buttonOutlineText}>Login</Text>
+                </TouchableOpacity>
             </View>
-
         </KeyboardAvoidingView>
     )
 }
 
-export default LoginScreen
+export default RegistrationScreen
 
 const styles = StyleSheet.create({
     container: {
