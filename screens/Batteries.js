@@ -15,12 +15,8 @@ const Batteries = ({uid}) => {
     getBattery();
   }, [uid])
 
-  return (
-    <>
-      <Text>test</Text>
-      {batteries.map((battery,i) => { return <Text key={i}>Name: {battery.name} Charged: {battery.charged}</Text> })}
-    </>
-  )
+  return batteries.map((battery) => { return battery.charged })
+
 }
 
 export default Batteries
