@@ -1,7 +1,12 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { auth } from '../firebase'
+import { useNavigation } from '@react-navigation/core'
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 const Settings = () => {
+    const navigation = useNavigation()
     const handleSignOut = () => {
         auth
           .signOut()

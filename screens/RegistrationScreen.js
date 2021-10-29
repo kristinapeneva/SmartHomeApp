@@ -1,7 +1,8 @@
 import { NavigationContainer } from '@react-navigation/native'
 import { useNavigation } from '@react-navigation/core'
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView, TouchableOpacity, ImageBackground } from 'react-native'
+import { LinearGradient } from 'expo-linear-gradient';
 import { auth } from '../firebase'
 import { Ionicons, Entypo } from '@expo/vector-icons'; 
 import { useFonts, DancingScript_400Regular } from "@expo-google-fonts/dancing-script";
@@ -56,9 +57,11 @@ const RegistrationScreen = () => {
         style={styles.container}
         behavior="padding"
         >
-            <View style={styles.pageTitleContainer}>
+            <LinearGradient colors={[ "#FAEEA6", "#F5DF4D"]} style={styles.pageTitleContainer}>
+            <ImageBackground source={require('../assets/circuit-board.svg')} style={{position: "absolute", width: "100%", height:"70%", top: 0, left: 0}} resizeMode="cover" />    
                 <Text style={styles.textTitle}>Sign Up</Text>
-            </View>
+            </LinearGradient>
+            <View style={styles.pageBottomContainer}>
             <View style={styles.inputContainer}>
                 <View style={styles.dataContainer}>
                     <Ionicons name="person" style={styles.iconData} />
@@ -108,6 +111,7 @@ const RegistrationScreen = () => {
                     </TouchableOpacity>
                 </View>
             </View>
+            </View>
         </KeyboardAvoidingView>
     )
 }
@@ -123,23 +127,33 @@ const styles = StyleSheet.create({
         
     },
     pageTitleContainer: {
-        borderBottomLeftRadius: 20,
-        borderBottomRightRadius: 20,
-        justifyContent: "center",
-        backgroundColor: "#F5DF4D",
         width: "100%",
         height: "25%",
         padding: "10%",
+        justifyContent: "center",
+        borderColor: "rgba( 255, 255, 255, 0.4 )",
+        borderRightWidth: 7,
+
+        borderBottomWidth: 1,
+        borderStyle: "solid",
+        borderBottomRightRadius: 50,
+        // borderBottomLeftRadius: 30,
         marginTop: 0,
         shadowColor: "#000",
         shadowOffset: {
-            width: 0,
-            height: 3,
+            width: 3,
+            height: 7,
         },
-        shadowOpacity: 0.3,
+        shadowOpacity: 0.2,
         shadowRadius: 4.65,
 
         elevation: 6,
+    },
+    pageBottomContainer: {
+        height: "100%",
+        width:"100%",
+        justifyContent: "space-between",
+        paddingBottom: 30
     },
     label: {
         fontFamily: "SourceSansPro_400Regular",
@@ -187,17 +201,19 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         width: '100%',
+        flex:1,
         alignItems: 'center',
-        marginTop: 40,
+        paddingBottom: 30
     },
 
     buttonContainer: {
         paddingHorizontal: "10%",
         width: '100%',
-        height: "10%",
+        // height: "10%",
         flex: 1,
         justifyContent: 'center',
-        gap: 25
+        gap: 25,
+        paddingBottom: 30
     },
 
     link: {
@@ -213,33 +229,32 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline'
     },
     buttonOutline: {
-        backgroundColor: '#F5DF4D',
+        backgroundColor: '#2a2a28',
         marginTop: 5,
         width: '100%',
         padding: 15,
         borderRadius: 10,
         alignItems: 'center',
+        borderColor: "rgba( 255, 255, 255, 0.4 )",
+        borderRightWidth: 3,
+
+        borderBottomWidth: 1,
+        borderStyle: "solid",
+        marginTop: 0,
         shadowColor: "#000",
         shadowOffset: {
-            width: 0,
-            height: 3,
+            width: 3,
+            height: 7,
         },
-        shadowOpacity: 0.3,
+        shadowOpacity: 0.2,
         shadowRadius: 4.65,
 
         elevation: 6,
     },
-    buttonText: {
-        color: '#1d1d1e',
-        fontWeight: '900',
-        fontSize: 16,
-        fontFamily: "SourceSansPro_400Regular",
-        letterSpacing: 0.1,
-    },
     buttonOutlineText: {
-        color: '#1d1d1e',
-        fontWeight: '900',
-        fontSize: 16,
+        color: '#fff',
+        fontWeight: '500',
+        fontSize: 20,
         fontFamily: "SourceSansPro_400Regular",
         letterSpacing: 0.1,
     }
