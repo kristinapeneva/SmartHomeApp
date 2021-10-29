@@ -27,9 +27,9 @@ export default function ElectricityPrice({api_key, lat, lon}) {
 }
 
 const styles = StyleSheet.create({
-data: {
+electricity: {
   fontFamily: "SourceSansPro_400Regular",
-  fontSize: 20,
+  fontSize: 15,
   lineHeight: 50,
   color: '#1d1d1e',
   letterSpacing: 0.1,
