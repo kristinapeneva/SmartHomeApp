@@ -7,6 +7,7 @@ import FirstScreen from './screens/FirstScreen';
 import RegistrationScreen from './screens/RegistrationScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { registerRootComponent } from 'expo';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,7 @@ export default function App() {
 
 }
 
+registerRootComponent(App); 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
